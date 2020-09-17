@@ -30,7 +30,7 @@ In this project, I have worked with two datasets. Here are the s3 links for each
 
 Name of the Dag: `analytical_tables_dag.py`
 
-![Alt text](/project/img/details_dag.png?raw=true "Optional Title")
+![Alt text](/home/airflow/img/details_dag.png?raw=true "Optional Title")
 
 These are some of the dag parameters:
 
@@ -55,7 +55,7 @@ default_args = {
 
 Graphical Representation of the Pipeline Flow:
 
-![Alt text](/project/img/Graph_view.png?raw=true "Optional Title")
+![Alt text](/home/airflow/img/Graph_view.png?raw=true "Optional Title")
 
 **ETL STEPS:**
 - First we will Begin with `DummyOperator` which is nothing but a starting point with no logical task.
@@ -71,7 +71,7 @@ Graphical Representation of the Pipeline Flow:
 
 - Finally, a *Run_data_quality_checks* task is performed using the custom operator, `DataQualityOperator`.
   - It will check two conditions; first whether there is any records or not.
-  
+
   ```
   if len(records) < 1 or len(records[0]) < 1:
       raise ValueError(f"Data quality check failed. {table} returned no results")
@@ -92,14 +92,11 @@ Graphical Representation of the Pipeline Flow:
       dag=dag,
       redshift_conn_id = "redshift",
       tables = {
-              "FT":"songplays", 
-              "DT1":"users", 
-              "DT2":"songs", 
-              "DT3":"artists", 
+              "FT":"songplays",
+              "DT1":"users",
+              "DT2":"songs",
+              "DT3":"artists",
               "DT4":"time"
               }
   )           
   ```
-  
-
-
